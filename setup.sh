@@ -61,7 +61,7 @@ SQL="DROP DATABASE IF EXISTS \`$DB_DATABASE\`;"
 # Run command
 mysql -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" -p"$DB_PASSWORD" -e "$SQL"
 
-php artisan migrate --seed
+php artisan migrate:fresh --seed
 php artisan optimize
 
 ## == NGEBUAT FILE HTACCESSNYA ==
