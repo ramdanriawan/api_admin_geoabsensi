@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#
 #install git klo blm ada
 echo "🔍 Checking if Git is installed..."
 
