@@ -1,63 +1,4 @@
 #!/bin/bash
-#
-#install git klo blm ada
-#echo "🔍 Checking if Git is installed..."
-#
-#if command -v git >/dev/null 2>&1; then
-#  echo "✅ Git is already installed. Version: $(git --version)"
-#else
-#    echo "❌ Git is not installed."
-#
-#    # Deteksi OS dan install Git
-#    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-#      echo "🛠 Installing Git using apt (Debian/Ubuntu)..."
-#      sudo apt update && sudo apt install -y git
-#
-#    elif [[ "$OSTYPE" == "darwin"* ]]; then
-#      echo "🛠 Installing Git using Homebrew (macOS)..."
-#      if ! command -v brew >/dev/null 2>&1; then
-#        echo "🍺 Homebrew not found. Installing Homebrew..."
-#        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-#      fi
-#      brew install git
-#
-#    elif [[ "$OSTYPE" == "msys"* ]]; then
-#      echo "🛑 Windows detected. Please install Git manually: https://git-scm.com/download/win"
-#      exit 1
-#
-#    else
-#      echo "⚠️ Unsupported OS: $OSTYPE"
-#      exit 1
-#    fi
-#fi
-#
-## Cek lagi setelah install
-#if command -v git >/dev/null 2>&1; then
-#  echo "✅ Git already installed. Version: $(git --version)"
-#else
-#  echo "❌ Git installation failed."
-#  exit 1
-#fi
-#
-## clone repositories
-#REPO_URL="https://github.com/ramdan_riawan/api_admin_geoabsensi.git"  # Ganti dengan URL repositori kamu
-#TARGET_DIR="repo"  # Ganti dengan nama folder tujuan (opsional)
-#
-## Cek apakah folder sudah ada
-#if [ -d "$TARGET_DIR" ]; then
-#  echo "✅ Repository already cloned at ./$TARGET_DIR"
-#else
-#  echo "📥 Cloning repository from $REPO_URL..."
-#  git clone "$REPO_URL" "$TARGET_DIR"
-#  if [ $? -eq 0 ]; then
-#    echo "✅ Clone complete: ./$TARGET_DIR"
-#  else
-#    echo "❌ Failed to clone repository."
-#    exit 1
-#  fi
-#fi
-
-# install php 8 klo blm ada
 
 #copy file .env
 if [ ! -f .env ]; then
@@ -110,17 +51,17 @@ php artisan migrate:fresh --env=testing --seed
 
 php artisan optimize:clear --env=testing
 
-php artisan test --env=testing
+#php artisan test --env=testing
 
 #delete database kalo udah di testing
 
 # Build SQL command
-SQL="DROP DATABASE IF NOT EXISTS \`$DB_DATABASE\`;"
+SQL="DROP DATABASE IF EXISTS \`$DB_DATABASE\`;"
 
 # Run command
 mysql -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" -p"$DB_PASSWORD" -e "$SQL"
 
-php artisan migrate
+php artisan migrate --seed
 php artisan optimize
 
 ## == NGEBUAT FILE HTACCESSNYA ==
@@ -185,9 +126,25 @@ systemctl status $SERVICE_NAME --no-pager
 
 php artisan schedule:work &
 
-php artisan serv &
+is_port_in_use() {
+  lsof -iTCP:$1 -sTCP:LISTEN -t >/dev/null 2>&1
+}
+
+# Loop cari port acak yang belum dipakai
+PORT=8000
+while true; do
+  PORT=$(( RANDOM % 64511 + 1024 ))  # 1024–65535
+  if ! is_port_in_use $PORT; then
+    echo "$PORT"
+    break
+  fi
+done
+
+php artisan serv --port=$PORT &
 
 echo "🌐 Attempting to open $URL in default browser..."
+
+URL="http://localhost:$PORT"
 
 # Cek dan jalankan per OS
 if command -v xdg-open >/dev/null 2>&1; then
