@@ -9,7 +9,7 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 
-if (!App::runningUnitTests()) {
+if (app()->runningInConsole() && $_SERVER['argv'][1] === 'schedule:work') {
 
     \Illuminate\Support\Facades\Schedule::job(new \App\Jobs\AttendanceAddNotPresentJob())->everyMinute();
 }
