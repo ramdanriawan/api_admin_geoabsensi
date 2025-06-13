@@ -75,16 +75,16 @@ DB_PASSWORD=$(grep DB_PASSWORD .env | cut -d '=' -f2)
 DB_PORT=${DB_PORT:-3306}
 DB_HOST=${DB_HOST:-127.0.0.1}
 
-## Build SQL command
-SQL="CREATE DATABASE IF NOT EXISTS \`$DB_DATABASE\`;"
-#
-## Run command
-mysql -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" -p"$DB_PASSWORD" -e "$SQL"
-
 read -p "Create fresh database? (y/n): " answer
 answer=${answer:-y}
 
 if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
+    ## Build SQL command
+    SQL="CREATE DATABASE IF NOT EXISTS \`$DB_DATABASE\`;"
+    #
+    ## Run command
+    mysql -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" -p"$DB_PASSWORD" -e "$SQL"
+
     php artisan migrate:fresh --seed
 else
     php artisan migrate --seed
@@ -171,35 +171,33 @@ else
     php artisan schedule:work &
     SCHEDULE_PID=$!
 
-    php artisan serve &
+    php artisan serv --port=$PORT &
     SERVE_PID=$!
+
+    # ===== DONE =====
+    echo "✅ Laravel schedule service setup complete and running."
+
+    echo "🌐 Attempting to open $URL in default browser..."
+
+    URL="http://localhost:$PORT"
+
+    # Cek dan jalankan per OS
+    if command -v xdg-open >/dev/null 2>&1; then
+      xdg-open "$URL"
+    elif command -v open >/dev/null 2>&1; then
+      open "$URL"
+    elif command -v start >/dev/null 2>&1; then
+      start "$URL"
+    else
+      echo "❌ Unable to detect method to open browser. Please open manually: $URL"
+      exit 1
+    fi
+
+    echo "✅ Browser should be opening now."
 
     # Saat user tekan Ctrl+C, kill dua-duanya
     trap "kill $SCHEDULE_PID $SERVE_PID" SIGINT
+
+    # Tunggu kedua proses sampai selesai
+    wait
 fi
-
-# ===== DONE =====
-echo "✅ Laravel schedule service setup complete and running."
-
-php artisan serv --port=$PORT
-
-echo "🌐 Attempting to open $URL in default browser..."
-
-URL="http://localhost:$PORT"
-
-# Cek dan jalankan per OS
-if command -v xdg-open >/dev/null 2>&1; then
-  xdg-open "$URL"
-elif command -v open >/dev/null 2>&1; then
-  open "$URL"
-elif command -v start >/dev/null 2>&1; then
-  start "$URL"
-else
-  echo "❌ Unable to detect method to open browser. Please open manually: $URL"
-  exit 1
-fi
-
-echo "✅ Browser should be opening now."
-
-# Tunggu kedua proses sampai selesai
-wait
