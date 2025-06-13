@@ -10,7 +10,7 @@ use App\Models\Dtos\PaySlipUpdateDto;
 use App\Models\PaySlip;
 use App\Services\ServiceImpl\PaySlipServiceImpl;
 
-class WebAdminPayslipController extends Controller
+class WebAdminPaySlipController extends Controller
 {
     /**
      * Display a listing of the resource.

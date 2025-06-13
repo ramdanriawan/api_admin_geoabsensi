@@ -46,7 +46,7 @@ class VisitController extends Controller
         // cek apakah previouse visitnya kecepetan
         $visit = VisitServiceImpl::findByUserId($request->user()->id);
 
-        if($visit->isTooFaster){
+        if($visit?->isTooFaster){
             return ResponseJson::badRequest("visits are too fast");
         }
 

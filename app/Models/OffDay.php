@@ -1,14 +1,17 @@
 <?php
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Testing\Fluent\Concerns\Has;
 
 class OffDay extends Model
 {
     //
-    use SoftDeletes;
+    /** @use HasFactory<\Database\Factories\OffDayFactory> */
+    use SoftDeletes, HasFactory;
     protected $guarded = [];
     protected $table   = 'offdays';
 

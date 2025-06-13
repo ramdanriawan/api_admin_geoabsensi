@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Web\Admin;
 
+use App\Models\VisitType;
+use App\Services\ServiceImpl\UserServiceImpl;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -18,15 +20,29 @@ class WebAdminVisitTypeControllerTest extends TestCase
 
     public function test_index_works(): void
     {
-        $this->assertTrue(true); // TODO: test index
+        $admin = UserServiceImpl::findAdmin();
+
+        $response = $this->actingAs($admin)->get(route('web.admin.visitType.index'));
+
+        $response->assertOk();
     }
     public function test_create_works(): void
     {
-        $this->assertTrue(true); // TODO: test create
+        $admin = UserServiceImpl::findAdmin();
+
+        $response = $this->actingAs($admin)->get(route('web.admin.visitType.create'));
+
+        $response->assertOk();
     }
     public function test_store_works(): void
     {
-        $this->assertTrue(true); // TODO: test store
+        $admin = UserServiceImpl::findAdmin();
+
+        $response = $this->actingAs($admin)->post(route('web.admin.visitType.store'), [
+            'name' => fake()->name,
+        ]);
+
+        $response->assertRedirect(route('web.admin.visitType.index'));
     }
     public function test_show_works(): void
     {
@@ -34,11 +50,26 @@ class WebAdminVisitTypeControllerTest extends TestCase
     }
     public function test_edit_works(): void
     {
-        $this->assertTrue(true); // TODO: test edit
+        $admin = UserServiceImpl::findAdmin();
+
+        $visitType = VisitType::factory()->createFromService();
+
+        $response = $this->actingAs($admin)->get(route('web.admin.visitType.edit', $visitType->id));
+
+        $response->assertOk();
     }
     public function test_update_works(): void
     {
-        $this->assertTrue(true); // TODO: test update
+        $admin = UserServiceImpl::findAdmin();
+
+        $visitType = VisitType::factory()->createFromService();
+
+        $response = $this->actingAs($admin)->post(route('web.admin.visitType.update', $visitType->id), [
+            '_method' => 'PUT',
+            'name' => fake()->name,
+        ]);
+
+        $response->assertRedirect(route('web.admin.visitType.index'));
     }
     public function test_destroy_works(): void
     {

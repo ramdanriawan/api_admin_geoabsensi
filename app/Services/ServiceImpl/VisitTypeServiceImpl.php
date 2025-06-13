@@ -8,7 +8,6 @@ use App\Models\Employee;
 use App\Models\NotificationSetting;
 use App\Models\Visittype;
 use App\Services\JwtToken\JwtTokenService;
-use App\Services\VisittypeService;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -172,7 +171,7 @@ class VisitTypeServiceImpl
     }
 
     // parameter visittype belum saya pakai
-    public static function addAllAttributes(Visittype|Builder|Model|array $item): Visittype|Model|stdClass
+    public static function addAllAttributes(Visittype|Builder|Model|array $item): Visittype|Model|stdClass|null
     {
         if (is_array($item)) {
             $item = json_decode(json_encode($item));

@@ -7,6 +7,7 @@ use App\Models\Dtos\PaySlipUpdateDto;
 use App\Models\PaySlip;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use RamdanRiawan\Accounting;
 use RamdanRiawan\DateTime;
 
@@ -212,6 +213,7 @@ class PaySlipServiceImpl
 
     public static function delete(PaySlip $paySlip)
     {
+
         DB::transaction(function () use ($paySlip) {
 
             $paySlip->delete();

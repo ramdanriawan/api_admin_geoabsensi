@@ -173,7 +173,7 @@ class EmployeeOffDayServiceImpl implements OffDayService
         $input = [
             'employee_id' => $employeeOffDayStoreDto->getEmployeeId(),
             'off_type_id' => $employeeOffDayStoreDto->getOffTypeId(),
-            'quota' => $employeeOffDayStoreDto->getQuota()
+            'quota' => $employeeOffDayStoreDto->getQuota(),
         ];
 
 

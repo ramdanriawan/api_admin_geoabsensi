@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -9,7 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class TripAttendance extends Model
 {
     //
-    use SoftDeletes;
+    /** @use HasFactory<\Database\Factories\TripAttendanceFactory> */
+    use SoftDeletes, HasFactory;
     protected $guarded = [];
     protected $table   = 'trip_attendances';
 

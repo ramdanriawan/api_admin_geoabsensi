@@ -28,4 +28,27 @@ class Geolocator
 
         return $jarak; // kilometer
     }
+
+    public static function generateNearbyCoordinates($lat, $lng, $radiusInMeters = 50): array
+    {
+        // Konversi meter ke derajat (1 derajat ≈ 111,320 meter)
+        $radiusInDegrees = $radiusInMeters / 111320;
+
+        $u = rand() / getrandmax(); // random 0-1
+        $v = rand() / getrandmax();
+        $w = $radiusInDegrees * sqrt($u);
+        $t = 2 * M_PI * $v;
+
+        $x = $w * cos($t);
+        $y = $w * sin($t);
+
+        // Perbaiki untuk kurvatur bumi
+        $newLat = $lat + $y;
+        $newLng = $lng + $x / cos(deg2rad($lat));
+
+        return [
+            'latitude' => $newLat,
+            'longitude' => $newLng,
+        ];
+    }
 }

@@ -90,7 +90,6 @@ class OverTimeController extends Controller
     public function findByAttendanceId(Request $request, Attendance $attendance) {
         $overTime = OverTimeServiceImpl::findByAttendanceId($attendance->id);
 
-
         if(!$overTime) {
             return ResponseJson::notFound();
         }

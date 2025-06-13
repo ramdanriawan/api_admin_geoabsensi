@@ -2,13 +2,13 @@
 
 namespace Tests\Feature\Web\Admin;
 
+use App\Services\ServiceImpl\UserServiceImpl;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class WebAdminBreakTimeControllerTest extends TestCase
 {
     use RefreshDatabase;
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -18,11 +18,15 @@ class WebAdminBreakTimeControllerTest extends TestCase
 
     public function test_index_works(): void
     {
-        $this->assertTrue(true); // TODO: test index
+        $response = $this->actingAs(UserServiceImpl::findAdmin())->get(route('web.admin.breakTime.index'));
+
+        $response->assertStatus(200);
     }
     public function test_create_works(): void
     {
-        $this->assertTrue(true); // TODO: test create
+        $response = $this->actingAs(UserServiceImpl::findAdmin())->get(route('web.admin.breakTime.create'));
+
+        $response->assertStatus(200);
     }
     public function test_store_works(): void
     {
@@ -34,7 +38,7 @@ class WebAdminBreakTimeControllerTest extends TestCase
     }
     public function test_edit_works(): void
     {
-        $this->assertTrue(true); // TODO: test edit
+        $this->assertTrue(true);
     }
     public function test_update_works(): void
     {

@@ -4,6 +4,8 @@ namespace Tests\Feature\Api\V1\Mobile\Employee;
 
 use App\Models\Dtos\UserAdminStoreDto;
 use App\Models\Dtos\UserStoreDto;
+use App\Models\Trip;
+use App\Models\User;
 use App\Services\ServiceImpl\UserServiceImpl;
 use Illuminate\Support\Uri;
 use Tests\TestCase;
@@ -22,21 +24,17 @@ class ApplicationControllerTest extends TestCase
 
     public function test_info_works(): void
     {
-        $user = UserServiceImpl::store(UserStoreDto::fromJson([
-            'name' => 'employee',
-            'email' => 'employee@gmail.com',
-            'password' => 'employee@gmail.com',
-        ]));
 
-        $response = $this->actingAs($user)->get("api/v1/user/login?email={$user->email}&password={$user->email}");
+        $password = fake()->password;
+        $user = User::factory()->createFromService([
+            'password' => $password
+        ]);
 
-        $response->assertStatus(200);
+        $response = $this->actingAs($user)->get(('api/v1/application/info'), [
 
-//        $this->get('api/v1/application/info', [
-//            'Authorization' => 'Bearer '
-//        ])->assertOk();
-//
-//        $this->assertTrue(true); // TODO: test info
+        ]);
+
+        $this->assertTrue($response->json('success'));
     }
 
 }

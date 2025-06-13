@@ -2,6 +2,9 @@
 
 namespace Tests\Feature\Api\V1\Web\Admin;
 
+use App\Models\PaySlip;
+use App\Models\User;
+use App\Services\ServiceImpl\UserServiceImpl;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -26,11 +29,35 @@ class ApiV1WebAdminPaySlipControllerTest extends TestCase
     }
     public function test_dataTable_works(): void
     {
-        $this->assertTrue(true); // TODO: test dataTable
+        $admin = UserServiceImpl::findAdmin();
+
+        $response = $this->actingAs($admin)->get(route('api.v1.web.admin.paySlip.dataTable', [
+            'draw' => 1,
+            'search[value]' => '',
+            'order[0][column]' => 'id',
+            'order[0][dir]' => 'desc',
+        ]));
+
+        $response->assertOk();
+
     }
+
     public function test_delete_works(): void
     {
-        $this->assertTrue(true); // TODO: test delete
+        $admin = UserServiceImpl::findAdmin();
+
+        $user = User::factory()->createFromService();
+
+        $paySlip = PaySlip::factory()->createFromService([
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->actingAs($admin)->get(route('api.v1.web.admin.paySlip.delete', [
+            'user_id' => $user->id,
+            'paySlip' => $paySlip->id,
+        ]));
+
+        $response->assertOk();
     }
 
 }

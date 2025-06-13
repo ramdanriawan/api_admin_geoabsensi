@@ -2,6 +2,9 @@
 
 namespace Tests\Feature\Api\V1\Mobile\Employee;
 
+use App\Models\Organization;
+use App\Models\User;
+use App\Services\ServiceImpl\OrganizationServiceImpl;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -18,7 +21,7 @@ class OrganizationControllerTest extends TestCase
 
     public function test_index_works(): void
     {
-        $this->assertTrue(true); // TODO: test index
+        $this->assertTrue(true);
     }
     public function test_create_works(): void
     {

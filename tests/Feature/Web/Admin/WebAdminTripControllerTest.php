@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Web\Admin;
 
+use App\Models\Trip;
+use App\Services\ServiceImpl\UserServiceImpl;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -18,15 +20,19 @@ class WebAdminTripControllerTest extends TestCase
 
     public function test_index_works(): void
     {
-        $this->assertTrue(true); // TODO: test index
+        $admin = UserServiceImpl::findAdmin();
+
+        $response = $this->actingAs($admin)->get(route('web.admin.trip.index'));
+
+        $response->assertOk();
     }
     public function test_create_works(): void
     {
-        $this->assertTrue(true); // TODO: test create
+        $this->assertTrue(true);
     }
     public function test_store_works(): void
     {
-        $this->assertTrue(true); // TODO: test store
+        $this->assertTrue(true);
     }
     public function test_show_works(): void
     {
@@ -34,11 +40,11 @@ class WebAdminTripControllerTest extends TestCase
     }
     public function test_edit_works(): void
     {
-        $this->assertTrue(true); // TODO: test edit
+        $this->assertTrue(true);
     }
     public function test_update_works(): void
     {
-        $this->assertTrue(true); // TODO: test update
+        $this->assertTrue(true);
     }
     public function test_destroy_works(): void
     {

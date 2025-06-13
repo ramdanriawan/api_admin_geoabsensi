@@ -55,11 +55,12 @@ php artisan optimize:clear --env=testing
 
 #delete database kalo udah di testing
 
-# Build SQL command
-SQL="DROP DATABASE IF EXISTS \`$DB_DATABASE\`;"
-
-# Run command
-mysql -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" -p"$DB_PASSWORD" -e "$SQL"
+#
+## Build SQL command
+#SQL="DROP DATABASE IF EXISTS \`$DB_DATABASE\`;"
+#
+## Run command
+#mysql -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" -p"$DB_PASSWORD" -e "$SQL"
 
 php artisan migrate:fresh --seed
 php artisan optimize

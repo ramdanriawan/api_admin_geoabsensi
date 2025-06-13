@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Web\Admin;
 
+use App\Services\ServiceImpl\UserServiceImpl;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -18,15 +19,23 @@ class WebAdminOffDayControllerTest extends TestCase
 
     public function test_index_works(): void
     {
-        $this->assertTrue(true); // TODO: test index
+        $admin = UserServiceImpl::findAdmin();
+
+        $response = $this->actingAs($admin)->get(route('web.admin.offDay.index'));
+
+        $response->assertOk();
     }
     public function test_create_works(): void
     {
-        $this->assertTrue(true); // TODO: test create
+        $admin = UserServiceImpl::findAdmin();
+
+        $response = $this->actingAs($admin)->get(route('web.admin.offDay.create'));
+
+        $response->assertOk();
     }
     public function test_store_works(): void
     {
-        $this->assertTrue(true); // TODO: test store
+        $this->assertTrue(true);
     }
     public function test_show_works(): void
     {

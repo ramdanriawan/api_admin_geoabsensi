@@ -198,14 +198,14 @@ class VisitServiceImpl implements VisitService
 
     public static function findByUserId(int $userId)
     {
-        $attendance = Visit::orderByDesc('id')->where(['user_id' => $userId, 'date' => date('Y-m-d')])->first();
+        $visit = Visit::orderByDesc('id')->where(['user_id' => $userId, 'date' => date('Y-m-d')])->first();
 
-        if (!$attendance) {
+        if (!$visit) {
             return null;
         }
 
-        $attendance = self::addAllAttributes($attendance);
+        $visit = self::addAllAttributes($visit);
 
-        return $attendance;
+        return $visit;
     }
 }

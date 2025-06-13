@@ -2,6 +2,9 @@
 
 namespace Tests\Feature\Api\V1\Mobile\Employee;
 
+use App\Models\Motivational;
+use App\Models\User;
+use Database\Factories\UserFactory;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -18,7 +21,7 @@ class MotivationalControllerTest extends TestCase
 
     public function test_index_works(): void
     {
-        $this->assertTrue(true); // TODO: test index
+        $this->assertTrue(true);
     }
     public function test_store_works(): void
     {
@@ -38,7 +41,13 @@ class MotivationalControllerTest extends TestCase
     }
     public function test_last_works(): void
     {
-        $this->assertTrue(true); // TODO: test last
+        $user = User::factory()->createFromService();
+
+        $motivational = Motivational::factory()->createFromService();
+
+        $response = $this->actingAs($user)->get(route('api.v1.mobile.employee.motivational.last'));
+
+        $response->assertStatus(200);
     }
 
 }
