@@ -1475,7 +1475,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::FuL1iRctD54kEdWR',
+            '_route' => 'generated::agHgAhalXXzIovJH',
           ),
           1 => NULL,
           2 => 
@@ -1495,7 +1495,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::vz5GtdNIWUWVyl98',
+            '_route' => 'generated::1hpNXeTGX5LYbcm2',
           ),
           1 => NULL,
           2 => 
@@ -7910,7 +7910,7 @@ app('router')->setCompiledRoutes(
     }
 
     return \\RamdanRiawan\\ResponseJson::unauthorized();
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000cd70000000000000000";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000d3c0000000000000000";}}',
         'as' => 'api.v1.mobile.employee.login',
         'namespace' => NULL,
         'prefix' => 'api/v1',
@@ -7950,7 +7950,7 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:186:"function (\\Illuminate\\Http\\Request $request) {
             return \\RamdanRiawan\\ResponseJson::success(\\App\\Services\\ServiceImpl\\UserServiceImpl::findOne($request->user()->id));
-        }";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000d0e0000000000000000";}}',
+        }";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000d730000000000000000";}}',
         'as' => 'api.v1.mobile.employee.user.me',
         'namespace' => NULL,
         'prefix' => 'api/v1/user',
@@ -7992,7 +7992,7 @@ app('router')->setCompiledRoutes(
             \\App\\Services\\ServiceImpl\\UserServiceImpl::logout($request->user());
 
             return \\RamdanRiawan\\ResponseJson::success(null);
-        }";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000d100000000000000000";}}',
+        }";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000d750000000000000000";}}',
         'as' => 'api.v1.mobile.employee.user.logout',
         'namespace' => NULL,
         'prefix' => 'api/v1/user',
@@ -8034,7 +8034,7 @@ app('router')->setCompiledRoutes(
             $user = \\App\\Services\\ServiceImpl\\UserServiceImpl::updatePhotoProfile($request->user(), $request->file(\'picture\'));
 
             return \\RamdanRiawan\\ResponseJson::success($user);
-        }";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000d120000000000000000";}}',
+        }";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000d770000000000000000";}}',
         'as' => 'api.v1.mobile.employee.user.updatePhotoProfile',
         'namespace' => NULL,
         'prefix' => 'api/v1/user',
@@ -10884,7 +10884,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::FuL1iRctD54kEdWR' => 
+    'generated::agHgAhalXXzIovJH' => 
     array (
       'methods' => 
       array (
@@ -10912,8 +10912,8 @@ app('router')->setCompiledRoutes(
                     return response(\\Illuminate\\Support\\Facades\\View::file(\'/Users/airm12020/PhpstormProjects/api-admin-geoabsensi-piter.bikinaplikasi.dev/vendor/laravel/framework/src/Illuminate/Foundation/Configuration\'.\'/../resources/health-up.blade.php\', [
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
-                }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"0000000000000cd30000000000000000";}}',
-        'as' => 'generated::FuL1iRctD54kEdWR',
+                }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"0000000000000d380000000000000000";}}',
+        'as' => 'generated::agHgAhalXXzIovJH',
       ),
       'fallback' => false,
       'defaults' => 
@@ -10948,7 +10948,7 @@ app('router')->setCompiledRoutes(
     \\Illuminate\\Support\\Facades\\App::setLocale($locale);
 
     return \\redirect()->route(\'web.admin.welcome\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000d0b0000000000000000";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000d700000000000000000";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
@@ -10970,7 +10970,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::vz5GtdNIWUWVyl98' => 
+    'generated::1hpNXeTGX5LYbcm2' => 
     array (
       'methods' => 
       array (
@@ -10993,13 +10993,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:65:"function () {
     return \\redirect()->route(\'web.admin.login\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000d600000000000000000";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000dc50000000000000000";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::vz5GtdNIWUWVyl98',
+        'as' => 'generated::1hpNXeTGX5LYbcm2',
       ),
       'fallback' => false,
       'defaults' => 
@@ -17605,7 +17605,7 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:72:"function () {
         return \\redirect(\\route(\'web.admin.login\'));
-    }";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000d640000000000000000";}}',
+    }";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000dc90000000000000000";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
@@ -17643,7 +17643,7 @@ app('router')->setCompiledRoutes(
                         $config,
                         $isProduction
                     ))($request, $path);
-                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"0000000000000d530000000000000000";}}',
+                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"0000000000000db80000000000000000";}}',
         'as' => 'storage.local',
       ),
       'fallback' => false,

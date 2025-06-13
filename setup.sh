@@ -51,6 +51,8 @@ esac
 # --- Continue your script here ---
 echo "🚀 MySQL check passed. Continuing script execution..."
 
+composer install
+
 #copy file .env
 if [ ! -f .env ]; then
     if [ -f .env.example ]; then
