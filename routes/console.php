@@ -11,7 +11,7 @@ Artisan::command('inspire', function () {
 
 if (
     app()->runningInConsole() &&
-    ($_SERVER['argv'][1] === 'schedule:work' || $_SERVER['argv'][1] === 'schedule:run' || $_SERVER['argv'][2] === 'schedule:work' || $_SERVER['argv'][2] === 'schedule:run')) {
+    ($_SERVER['argv'][1] === 'schedule:work' || $_SERVER['argv'][1] === 'schedule:run')) {
 
     \Illuminate\Support\Facades\Schedule::job(new \App\Jobs\AttendanceAddNotPresentJob())->everyMinute();
 }
