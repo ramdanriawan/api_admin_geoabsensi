@@ -1,5 +1,56 @@
 #!/bin/bash
 
+# ========================
+# MySQL Check Script
+# ========================
+
+# Detect OS
+OS=$(uname -s)
+echo "🔍 Detected OS: $OS"
+
+# --- Check if MySQL client is installed ---
+if ! command -v mysql >/dev/null 2>&1; then
+    echo "❌ MySQL client (mysql) is not installed. Exiting."
+    exit 1
+fi
+
+# --- Check if MySQL service is running ---
+case "$OS" in
+    Linux*)
+        if systemctl is-active --quiet mysql || systemctl is-active --quiet mariadb; then
+            echo "✅ MySQL is running on Linux"
+        else
+            echo "❌ MySQL is NOT running on Linux. Exiting."
+            exit 1
+        fi
+        ;;
+    Darwin*)
+        # macOS - check via process instead of brew (faster and safer)
+        if pgrep -f mysqld >/dev/null 2>&1; then
+            echo "✅ MySQL is running on macOS"
+        else
+            echo "❌ MySQL is NOT running on macOS. Exiting."
+            exit 1
+        fi
+        ;;
+    MINGW*|MSYS*|CYGWIN*)
+        # Windows Git Bash / MSYS / Cygwin
+        if sc query mysql | grep -q "RUNNING"; then
+            echo "✅ MySQL is running on Windows"
+        else
+            echo "❌ MySQL is NOT running on Windows. Exiting."
+            exit 1
+        fi
+        ;;
+    *)
+        echo "❌ Unsupported OS: $OS. Exiting."
+        exit 1
+        ;;
+esac
+
+# --- Continue your script here ---
+echo "🚀 MySQL check passed. Continuing script execution..."
+
 #copy file .env
 if [ ! -f .env ]; then
     if [ -f .env.example ]; then
@@ -32,6 +83,8 @@ echo "📦 Checking database for testing: $DB_DATABASE on $DB_HOST:$DB_PORT..."
 # Build SQL command
 SQL="CREATE DATABASE IF NOT EXISTS \`$DB_DATABASE\`;"
 
+echo "enter mysql password"
+
 # Run command
 mysql -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" -p"$DB_PASSWORD" -e "$SQL"
 
@@ -52,6 +105,8 @@ php artisan optimize:clear --env=testing
 #php artisan test --env=testing
 
 #delete database kalo udah di testing
+
+echo "enter mysql password"
 
 #
 ## Build SQL command
@@ -79,6 +134,8 @@ read -p "Create fresh database? (y/n): " answer
 answer=${answer:-y}
 
 if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
+    echo "enter mysql password"
+
     ## Build SQL command
     SQL="CREATE DATABASE IF NOT EXISTS \`$DB_DATABASE\`;"
     #
