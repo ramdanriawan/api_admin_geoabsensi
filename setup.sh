@@ -183,10 +183,12 @@ done
 
 #buat jadi service kalo di linux
 if [[ "$OSTYPE" == linux-gnu* ]]; then
+    CURRENT_DIR=$(pwd)
+
     # ===== CONFIGURABLE VARIABLES =====
     USER="root"
     GROUP="root"
-    WORKDIR="/home/api-admin-geoabsensi-piter.bikinaplikasi.dev/public_html"
+    WORKDIR="$CURRENT_DIR"
     SERVICE_NAME="laravel-schedule"
     PHP_PATH="/usr/bin/php"
     LOG_DIR="$WORKDIR/storage/logs"
