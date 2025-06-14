@@ -37,6 +37,7 @@ class AttendanceAddNotPresentJob implements ShouldQueue
 
         $user = User::whereNotIn('id', $attendanceUsersIds)
             ->where(['status' => 'active'])
+            ->whereIn('level', ['employee'])
             ->get();
 
         foreach ($user as $item) {
