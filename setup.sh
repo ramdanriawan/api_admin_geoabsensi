@@ -51,6 +51,60 @@ esac
 # --- Continue your script here ---
 echo "🚀 MySQL check passed. Continuing script execution..."
 
+
+## cek ip
+# Detect operating system
+OS="$(uname -s)"
+LOCAL_IP=""
+
+# Function to get IP on Linux
+get_ip_linux() {
+    LOCAL_IP=$(hostname -I | awk '{print $1}')
+}
+
+# Function to get IP on macOS
+get_ip_macos() {
+    for iface in en0 en1; do
+        IP=$(ipconfig getifaddr "$iface" 2>/dev/null)
+        if [[ -n "$IP" ]]; then
+            LOCAL_IP="$IP"
+            return
+        fi
+    done
+}
+
+# Function to get IP on Windows (Git Bash / MSYS)
+get_ip_windows() {
+    LOCAL_IP=$(ipconfig | awk '/IPv4 Address/ {print $NF; exit}')
+}
+
+# Detect and run the appropriate function
+case "$OS" in
+    Linux*)
+        get_ip_linux
+        ;;
+    Darwin*)
+        get_ip_macos
+        ;;
+    MINGW*|MSYS*|CYGWIN*)
+        get_ip_windows
+        ;;
+    *)
+        echo "❌ Unsupported OS: $OS"
+        exit 1
+        ;;
+esac
+
+# Output or use the IP address
+if [[ -n "$LOCAL_IP" ]]; then
+    echo "✅ Local IP Address: $LOCAL_IP"
+    # Example usage
+    echo "🌐 You can access the app at: http://$LOCAL_IP"
+else
+    echo "❌ Failed to detect local IP address."
+    exit 1
+fi
+
 composer install
 
 #copy file .env
@@ -167,6 +221,8 @@ else
 fi
 
 
+
+
 is_port_in_use() {
   lsof -iTCP:$1 -sTCP:LISTEN -t >/dev/null 2>&1
 }
@@ -232,7 +288,7 @@ else
     php artisan schedule:work &
     SCHEDULE_PID=$!
 
-    php artisan serv --port=$PORT &
+    php artisan serv --port=$PORT --host="$LOCAL_IP" &
     SERVE_PID=$!
 
     # ===== DONE =====
@@ -240,7 +296,7 @@ else
 
     echo "🌐 Attempting to open $URL in default browser..."
 
-    URL="http://localhost:$PORT"
+    URL="http://$LOCAL_IP:$PORT"
 
     # Cek dan jalankan per OS
     if command -v xdg-open >/dev/null 2>&1; then
