@@ -24,7 +24,7 @@ Geoabsensi is mobile app gps based attendance work on flutter ios and flutter an
 - Open Litespeed Web Server
 
 ## HOW TO INSTALL
-- make sure mysql installed on u pc / server
+- make sure composer, mysql, php ^8.2 installed on u pc / server
 - open cmd & Clone this repository by using git clone https://github.com/ramdanriawan/api_admin_geoabsensi
 - cd api_admin_geoabsensi
 - give access to ./setup.sh executable by run chmod +x ./setup.sh
