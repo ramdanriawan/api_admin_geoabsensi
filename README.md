@@ -14,6 +14,7 @@ Geoabsensi is mobile app gps based attendance work on flutter ios and flutter an
 - Trip
 - Visit
 - Break Time
+- Motivational
 - Recape
 
 ## TECH
