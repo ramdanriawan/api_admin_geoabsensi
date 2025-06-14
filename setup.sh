@@ -162,16 +162,16 @@ php artisan optimize:clear --env=testing
 
 #delete database kalo udah di testing
 
-echo "enter mysql password"
-
+#echo "enter mysql password"
 #
-## Build SQL command
-SQL="DROP DATABASE IF EXISTS \`$DB_DATABASE\`;"
+##
+### Build SQL command
+#SQL="DROP DATABASE IF EXISTS \`$DB_DATABASE\`;"
+##
+### Run command
+#mysql -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" -p"$DB_PASSWORD" -e "$SQL"
 #
-## Run command
-mysql -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" -p"$DB_PASSWORD" -e "$SQL"
-
-echo "testing database dropped"
+#echo "testing database dropped"
 
 echo "creating application database"
 
@@ -285,7 +285,7 @@ EOF
     systemctl status $SERVICE_NAME --no-pager
 else
     # Jalankan schedule:work dan serve sebagai subshell dan simpan PID-nya
-    php artisan schedule:work &
+    php artisan schedule:work >> storage/logs/schedule.log 2>&1 &
     SCHEDULE_PID=$!
 
     php artisan serv --port=$PORT --host="$LOCAL_IP" &
