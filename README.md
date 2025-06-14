@@ -31,6 +31,11 @@ Geoabsensi is mobile app gps based attendance work on flutter ios and flutter an
 - ./setup.sh
 - done !
 
+## TESTING
+- edit .env.testing configuration
+- ensure the testing database is exists by these configuration, if not create it!
+- try to run: php artisan test --env=testing
+
 ## FLUTTER MOBILE APP
 see in this repository: https://github.com/ramdanriawan/geoabsensi 
 
