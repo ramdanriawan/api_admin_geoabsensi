@@ -12,11 +12,18 @@ Geoabsensi is mobile app gps based attendance work on flutter ios and flutter an
 - Over Time
 - Off Day
 - Trip
-- Visite
+- Visit
 - Break Time
 - Recape
 
+## TECH
+- Laravel
+- Flutter
+- MySQL
+- Open Litespeed Web Server
+
 ## HOW TO INSTALL
+- make sure mysql installed on u pc / server
 - open cmd & Clone this repository by using git clone https://github.com/ramdanriawan/api_admin_geoabsensi
 - cd api_admin_geoabsensi
 - give access to ./setup.sh executable by run chmod +x ./setup.sh
@@ -24,4 +31,10 @@ Geoabsensi is mobile app gps based attendance work on flutter ios and flutter an
 - done !
 
 ## FLUTTER MOBILE APP
-see in this repository: https://github.com/ramdanriawan/geoabsensi
+see in this repository: https://github.com/ramdanriawan/geoabsensi 
+
+## CONTACT
+- WA: https://wa.me/6288287642532
+- Website: https://bikinaplikasi.dev
+- Tiktok: https://tiktok.com/@bikinaplikasidev
+- Youtube: https://www.youtube.com/@bikinaplikasidev6864
